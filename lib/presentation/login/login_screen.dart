@@ -24,18 +24,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    ref.listen<LoginState>(loginControllerProvider, (previous, next) {
-      if (next.isSuccess) {
-        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text(AppStrings.loginSuccessful)));
-        Future.delayed(const Duration(milliseconds: 800), () {
-          ref.read(navigationServiceProvider).goToChat();
-        });
-      }
-
-      if (next.errorMessage != null && next.errorMessage!.isNotEmpty) {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(next.errorMessage!)));
-      }
-    });
+    _listenToState(context);
 
     final state = ref.watch(loginControllerProvider);
 
@@ -59,6 +48,21 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
         ),
       ),
     );
+  }
+
+  void _listenToState(BuildContext context) {
+    ref.listen<LoginState>(loginControllerProvider, (previous, next) {
+      if (next.isSuccess) {
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text(AppStrings.loginSuccessful)));
+        Future.delayed(const Duration(milliseconds: 800), () {
+          ref.read(navigationServiceProvider).goToChat();
+        });
+      }
+
+      if (next.errorMessage?.isNotEmpty ?? false) {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(next.errorMessage!)));
+      }
+    });
   }
 
   @override
