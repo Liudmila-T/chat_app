@@ -1,5 +1,5 @@
 import 'package:chat_app/core/theme/app_theme.dart';
-import 'package:chat_app/presentation/login/login_screen.dart';
+import 'package:chat_app/presentation/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

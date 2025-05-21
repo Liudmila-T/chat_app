@@ -1,10 +1,10 @@
 import 'package:either_dart/either.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../core/constants/app_strings.dart';
-import '../../core/failures/app_failure.dart';
-import '../../domain/entities/user.dart';
-import '../../domain/usecases/login_usecase.dart';
+import '../../../core/constants/app_strings.dart';
+import '../../../core/failures/app_failure.dart';
+import '../../../domain/entities/user.dart';
+import '../../../domain/usecases/login_usecase.dart';
 import 'login_state.dart';
 
 class LoginController extends StateNotifier<LoginState> {

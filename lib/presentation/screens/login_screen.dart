@@ -3,9 +3,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/constants/app_strings.dart';
 import '../../core/services/navigation_service.dart';
+import '../controllers/login/login_state.dart';
+import '../providers/login_providers.dart';
 import '../widgets/app_text_field.dart';
-import 'login_providers.dart';
-import 'login_state.dart';
 
 class LoginScreen extends ConsumerStatefulWidget {
   const LoginScreen({super.key});
