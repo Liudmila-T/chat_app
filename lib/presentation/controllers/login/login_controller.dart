@@ -17,7 +17,13 @@ class LoginController extends StateNotifier<LoginState> {
       state = state.copyWith(validationError: AppStrings.pleaseEnterYourName);
       return;
     }
-    state = state.copyWith(isLoading: true, errorMessage: null, validationError: null, isSuccess: false);
+    state = state.copyWith(
+      username: username,
+      isLoading: true,
+      errorMessage: null,
+      validationError: null,
+      isSuccess: false,
+    );
 
     final Either<Failure, User> result = await loginUseCase(username);
 
@@ -26,7 +32,7 @@ class LoginController extends StateNotifier<LoginState> {
         state = state.copyWith(isLoading: false, errorMessage: failure.message, isSuccess: false);
       },
       (user) {
-        state = state.copyWith(isLoading: false, errorMessage: null, isSuccess: true);
+        state = state.copyWith(username: username, isLoading: false, errorMessage: null, isSuccess: true);
       },
     );
   }

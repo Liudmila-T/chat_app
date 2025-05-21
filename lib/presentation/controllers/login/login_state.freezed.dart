@@ -17,6 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$LoginState {
+  String get username => throw _privateConstructorUsedError;
   bool get isLoading => throw _privateConstructorUsedError;
   String? get errorMessage => throw _privateConstructorUsedError;
   String? get validationError => throw _privateConstructorUsedError;
@@ -37,6 +38,7 @@ abstract class $LoginStateCopyWith<$Res> {
   ) = _$LoginStateCopyWithImpl<$Res, LoginState>;
   @useResult
   $Res call({
+    String username,
     bool isLoading,
     String? errorMessage,
     String? validationError,
@@ -59,6 +61,7 @@ class _$LoginStateCopyWithImpl<$Res, $Val extends LoginState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? username = null,
     Object? isLoading = null,
     Object? errorMessage = freezed,
     Object? validationError = freezed,
@@ -66,6 +69,11 @@ class _$LoginStateCopyWithImpl<$Res, $Val extends LoginState>
   }) {
     return _then(
       _value.copyWith(
+            username:
+                null == username
+                    ? _value.username
+                    : username // ignore: cast_nullable_to_non_nullable
+                        as String,
             isLoading:
                 null == isLoading
                     ? _value.isLoading
@@ -102,6 +110,7 @@ abstract class _$$LoginStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call({
+    String username,
     bool isLoading,
     String? errorMessage,
     String? validationError,
@@ -123,6 +132,7 @@ class __$$LoginStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? username = null,
     Object? isLoading = null,
     Object? errorMessage = freezed,
     Object? validationError = freezed,
@@ -130,6 +140,11 @@ class __$$LoginStateImplCopyWithImpl<$Res>
   }) {
     return _then(
       _$LoginStateImpl(
+        username:
+            null == username
+                ? _value.username
+                : username // ignore: cast_nullable_to_non_nullable
+                    as String,
         isLoading:
             null == isLoading
                 ? _value.isLoading
@@ -159,12 +174,16 @@ class __$$LoginStateImplCopyWithImpl<$Res>
 
 class _$LoginStateImpl implements _LoginState {
   const _$LoginStateImpl({
+    this.username = '',
     this.isLoading = false,
     this.errorMessage,
     this.validationError,
     this.isSuccess = false,
   });
 
+  @override
+  @JsonKey()
+  final String username;
   @override
   @JsonKey()
   final bool isLoading;
@@ -178,7 +197,7 @@ class _$LoginStateImpl implements _LoginState {
 
   @override
   String toString() {
-    return 'LoginState(isLoading: $isLoading, errorMessage: $errorMessage, validationError: $validationError, isSuccess: $isSuccess)';
+    return 'LoginState(username: $username, isLoading: $isLoading, errorMessage: $errorMessage, validationError: $validationError, isSuccess: $isSuccess)';
   }
 
   @override
@@ -186,6 +205,8 @@ class _$LoginStateImpl implements _LoginState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LoginStateImpl &&
+            (identical(other.username, username) ||
+                other.username == username) &&
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading) &&
             (identical(other.errorMessage, errorMessage) ||
@@ -199,6 +220,7 @@ class _$LoginStateImpl implements _LoginState {
   @override
   int get hashCode => Object.hash(
     runtimeType,
+    username,
     isLoading,
     errorMessage,
     validationError,
@@ -216,12 +238,15 @@ class _$LoginStateImpl implements _LoginState {
 
 abstract class _LoginState implements LoginState {
   const factory _LoginState({
+    final String username,
     final bool isLoading,
     final String? errorMessage,
     final String? validationError,
     final bool isSuccess,
   }) = _$LoginStateImpl;
 
+  @override
+  String get username;
   @override
   bool get isLoading;
   @override

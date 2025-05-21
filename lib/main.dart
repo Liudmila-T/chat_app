@@ -1,4 +1,5 @@
 import 'package:chat_app/core/theme/app_theme.dart';
+import 'package:chat_app/presentation/screens/chat_screen.dart';
 import 'package:chat_app/presentation/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -22,7 +23,7 @@ class MyApp extends ConsumerWidget {
       navigatorKey: navigationService.navigatorKey,
       theme: AppTheme.lightTheme,
       initialRoute: Routes.login,
-      routes: {Routes.login: (_) => const LoginScreen(), Routes.chat: (_) => const LoginScreen()},
+      routes: {Routes.login: (_) => const LoginScreen(), Routes.chat: (_) => const ChatScreen()},
     );
   }
 }

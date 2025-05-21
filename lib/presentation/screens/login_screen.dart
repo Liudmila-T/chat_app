@@ -7,6 +7,8 @@ import '../controllers/login/login_state.dart';
 import '../providers/login_providers.dart';
 import '../widgets/app_text_field.dart';
 
+const Duration _timeout = Duration(milliseconds: 500);
+
 class LoginScreen extends ConsumerStatefulWidget {
   const LoginScreen({super.key});
 
@@ -53,14 +55,16 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
   void _listenToState(BuildContext context) {
     ref.listen<LoginState>(loginControllerProvider, (previous, next) {
       if (next.isSuccess) {
-        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text(AppStrings.loginSuccessful)));
-        Future.delayed(const Duration(milliseconds: 800), () {
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(const SnackBar(content: Text(AppStrings.loginSuccessful), duration: _timeout));
+        Future.delayed(_timeout, () {
           ref.read(navigationServiceProvider).goToChat();
         });
       }
 
       if (next.errorMessage?.isNotEmpty ?? false) {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(next.errorMessage!)));
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(next.errorMessage!), duration: _timeout));
       }
     });
   }
