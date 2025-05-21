@@ -1,6 +1,11 @@
-class User {
-  final String username;
-  final String token;
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-  User({required this.username, required this.token});
+part 'user.freezed.dart';
+part 'user.g.dart';
+
+@freezed
+class User with _$User {
+  const factory User({required String username}) = _User;
+
+  factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 }

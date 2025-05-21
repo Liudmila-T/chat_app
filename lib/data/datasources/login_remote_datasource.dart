@@ -18,8 +18,7 @@ class LoginRemoteDatasourceImpl implements LoginRemoteDatasource {
       final response = await dio.post('/login', data: {'username': username});
 
       if (response.statusCode == 200 && response.data['success'] == true) {
-        final token = response.data['token'] as String;
-        return User(username: username, token: token);
+        return User(username: username);
       } else {
         throw AppException('Login failed: ${response.data}');
       }

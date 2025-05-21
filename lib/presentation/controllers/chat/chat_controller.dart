@@ -34,7 +34,7 @@ class ChatController extends StateNotifier<ChatState> {
     final newMessage = Message(text: text, sender: username, timestamp: DateTime.now(), isMine: true);
 
     state = state.copyWith(messages: [newMessage, ...state.messages], isSending: true, errorMessage: null);
-    final result = await _sendMessageUseCase(newMessage);
+    final result = await _sendMessageUseCase(newMessage.copyWith(isMine: false));
     result.fold((failure) => state = state.copyWith(errorMessage: failure.message), (_) {});
 
     state = state.copyWith(isSending: false);

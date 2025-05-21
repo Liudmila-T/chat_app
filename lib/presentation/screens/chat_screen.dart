@@ -38,7 +38,7 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
     final state = ref.watch(chatControllerProvider);
 
     return Scaffold(
-      appBar: AppBar(title: const Text(AppStrings.chat)),
+      appBar: AppBar(title: const Text(AppStrings.chat), centerTitle: true),
       body: SafeArea(
         child: Column(
           children: [

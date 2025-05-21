@@ -31,12 +31,7 @@ class ChatRemoteDataSourceImpl implements ChatRemoteDataSource {
           try {
             final json = jsonDecode(data);
 
-            return Message(
-              text: json['text'] as String,
-              sender: json['sender'] as String,
-              timestamp: DateTime.parse(json['timestamp'] as String),
-              isMine: false,
-            );
+            return Message.fromJson(json);
           } catch (e) {
             return Message(text: 'Invalid message', sender: 'system', timestamp: DateTime.now(), isMine: false);
           }
@@ -45,11 +40,7 @@ class ChatRemoteDataSourceImpl implements ChatRemoteDataSource {
 
   @override
   void sendMessage(Message message) {
-    final jsonMessage = jsonEncode({
-      'text': message.text,
-      'sender': message.sender,
-      'timestamp': message.timestamp.toIso8601String(),
-    });
+    final jsonMessage = jsonEncode(message.toJson());
     _channel?.sink.add(jsonMessage);
   }
 
