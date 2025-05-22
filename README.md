@@ -4,13 +4,14 @@ A new Flutter project.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+Testing
+To test the app locally, you need to install Mockoon and create a mock API environment:
 
-A few resources to get you started if this is your first Flutter project:
+Install and open Mockoon.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Create a new environment with a POST /login endpoint returning a mock response like:
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+{"success": true, "token": "auth_token"}
+Run the mock server on port 3000.
+
+Testing is available on emulators only (iOS or Android). Not tested on real devices.
